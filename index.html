@@ -3,740 +3,705 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Helix | LED Screen Sales & Installation</title>
+  <title>Helix LED & Design | LED Screen Sales, Installation & Maintenance</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --helix-green: #0b5b55;
+      --deep-teal: #073f3b;
+      --aqua: #38d6e8;
+      --sky: #d9f3ff;
+      --soft-blue: #edf8ff;
+      --white: #ffffff;
+      --ink: #112827;
+      --muted: #647675;
+      --line: rgba(11, 91, 85, 0.14);
+      --shadow: 0 24px 70px rgba(7, 63, 59, 0.14);
+      --radius: 26px;
     }
+
+    * { box-sizing: border-box; }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #020617;
-      color: white;
-      line-height: 1.6;
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 78% 8%, rgba(56, 214, 232, 0.28), transparent 35%),
+        radial-gradient(circle at 12% 18%, rgba(11, 91, 85, 0.10), transparent 28%),
+        linear-gradient(180deg, #f8fcff 0%, #eef9ff 44%, #ffffff 100%);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
+
+    .page { overflow: hidden; }
 
     .container {
-      width: min(1120px, 92%);
+      width: min(1160px, calc(100% - 40px));
       margin: 0 auto;
     }
 
     header {
       position: sticky;
       top: 0;
-      z-index: 1000;
-      background: rgba(2, 6, 23, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: rgba(255, 255, 255, 0.82);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      color: var(--helix-green);
+    }
+
+    .brand img {
+      height: 46px;
+      width: 46px;
+      object-fit: contain;
+      border-radius: 12px;
+      background: white;
     }
 
     nav {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 18px 0;
+      gap: 24px;
+      font-size: 0.95rem;
+      color: var(--muted);
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      font-size: 24px;
-    }
-
-    .logo-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: #22d3ee;
-      color: #020617;
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      color: #cbd5e1;
-      font-size: 15px;
-    }
-
-    .nav-links a:hover,
-    .footer-links a:hover {
-      color: white;
-    }
+    nav a:hover { color: var(--helix-green); }
 
     .btn {
-      display: inline-block;
-      border: none;
-      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 22px;
       border-radius: 999px;
-      padding: 14px 24px;
-      font-weight: 700;
-      font-size: 15px;
-      transition: 0.2s ease;
+      border: 1px solid transparent;
+      font-weight: 750;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
     }
+
+    .btn:hover { transform: translateY(-2px); }
 
     .btn-primary {
-      background: #22d3ee;
-      color: #020617;
-    }
-
-    .btn-primary:hover {
-      background: #67e8f9;
-      transform: translateY(-2px);
+      color: white;
+      background: linear-gradient(135deg, var(--helix-green), #0b7a71 62%, #14bbcb);
+      box-shadow: 0 16px 36px rgba(11, 91, 85, 0.28);
     }
 
     .btn-secondary {
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      background: rgba(255, 255, 255, 0.06);
-      color: white;
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.12);
+      color: var(--helix-green);
+      background: rgba(255, 255, 255, 0.82);
+      border-color: var(--line);
     }
 
     .hero {
       position: relative;
-      overflow: hidden;
-      padding: 110px 0;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 460px;
-      height: 460px;
-      background: rgba(34, 211, 238, 0.18);
-      filter: blur(80px);
-      border-radius: 50%;
-      left: 50%;
-      top: 10%;
-      transform: translateX(-50%);
+      padding: 86px 0 70px;
     }
 
     .hero-grid {
-      position: relative;
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 60px;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 48px;
       align-items: center;
     }
 
     .eyebrow {
-      display: inline-block;
-      margin-bottom: 24px;
-      border: 1px solid rgba(34, 211, 238, 0.35);
-      background: rgba(34, 211, 238, 0.1);
-      color: #cffafe;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 9px 16px;
-      font-size: 14px;
+      background: rgba(255, 255, 255, 0.68);
+      color: var(--helix-green);
+      font-size: 0.9rem;
+      font-weight: 750;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--aqua);
+      box-shadow: 0 0 20px rgba(56, 214, 232, 0.9);
     }
 
     h1 {
-      font-size: clamp(44px, 7vw, 76px);
-      line-height: 1;
-      letter-spacing: -2px;
-      margin-bottom: 24px;
+      margin: 22px 0 18px;
+      font-size: clamp(2.7rem, 7vw, 5.7rem);
+      line-height: 0.95;
+      letter-spacing: -0.07em;
+      color: var(--deep-teal);
     }
 
     .hero p {
-      max-width: 640px;
-      color: #cbd5e1;
-      font-size: 18px;
-      margin-bottom: 34px;
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 1.14rem;
+      line-height: 1.75;
+      margin: 0 0 28px;
     }
 
-    .hero-buttons {
+    .hero-actions {
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
+      margin-bottom: 26px;
     }
 
-    .screen-card {
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 32px;
-      padding: 18px;
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
-    }
-
-    .led-screen {
-      overflow: hidden;
-      border-radius: 24px;
-      background: #0f172a;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .pixels {
+    .stats {
       display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 5px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 620px;
+    }
+
+    .stat {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.62);
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--helix-green);
+      font-size: 1.45rem;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .visual-card {
+      position: relative;
+      min-height: 560px;
+      border: 1px solid rgba(56, 214, 232, 0.24);
+      border-radius: 38px;
+      background:
+        linear-gradient(150deg, rgba(255,255,255,0.82), rgba(217,243,255,0.72)),
+        linear-gradient(135deg, rgba(56, 214, 232, 0.22), rgba(11, 91, 85, 0.10));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .screen {
+      position: absolute;
+      left: 46px;
+      right: 46px;
+      top: 74px;
+      height: 300px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.72);
+      background:
+        radial-gradient(circle at 76% 26%, #38d6e8 0 9%, transparent 25%),
+        radial-gradient(circle at 30% 70%, #f6e96f 0 8%, transparent 26%),
+        linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.58)),
+        linear-gradient(120deg, #1d74ff 0%, #28e2dd 38%, #f5ed79 58%, #0e6b65 100%);
+      box-shadow: 0 26px 70px rgba(26, 120, 180, 0.22);
+      opacity: 0.96;
+    }
+
+    .screen::before,
+    .screen::after {
+      content: "";
+      position: absolute;
+      inset: 40px 30px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.48);
+      transform: rotate(-18deg);
+    }
+
+    .screen::after {
+      inset: 84px 84px 30px 110px;
+      border-color: rgba(11, 91, 85, 0.22);
+      transform: rotate(24deg);
+    }
+
+    .screen-base {
+      position: absolute;
+      left: 70px;
+      right: 70px;
+      top: 372px;
+      height: 18px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #d6e1e4, #ffffff, #b9c9cc);
+      box-shadow: inset 0 -4px 8px rgba(7,63,59,0.13);
+    }
+
+    .stand {
+      position: absolute;
+      width: 112px;
+      height: 120px;
+      border: 14px solid rgba(255,255,255,0.9);
+      border-top: 0;
+      bottom: 68px;
+      transform: skewX(-17deg);
+      filter: drop-shadow(0 16px 24px rgba(7, 63, 59, 0.12));
+    }
+
+    .stand.left { left: 115px; }
+    .stand.right { right: 115px; transform: skewX(17deg); }
+
+    .floating-note {
+      position: absolute;
+      right: 28px;
+      bottom: 26px;
+      width: 230px;
       padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(10px);
     }
 
-    .pixel {
-      height: 16px;
-      border-radius: 3px;
-      background: #334155;
+    .floating-note strong {
+      display: block;
+      color: var(--deep-teal);
+      margin-bottom: 6px;
     }
 
-    .pixel:nth-child(5n) { background: #38bdf8; }
-    .pixel:nth-child(7n) { background: #22d3ee; }
-
-    .screen-text {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 30px;
+    .floating-note span {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
     }
 
-    .screen-text small {
-      color: #22d3ee;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-    }
+    section { padding: 78px 0; }
 
-    .screen-text h2 {
-      margin-top: 10px;
-      font-size: 30px;
-      line-height: 1.15;
-    }
-
-    section {
-      padding: 90px 0;
-    }
-
-    .white-section {
-      background: white;
-      color: #020617;
-    }
-
-    .section-heading {
+    .section-head {
       max-width: 720px;
-      margin-bottom: 44px;
+      margin-bottom: 34px;
     }
 
-    .section-heading .tag {
-      color: #0891b2;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: 13px;
+    .section-head h2 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      letter-spacing: -0.055em;
+      color: var(--deep-teal);
     }
 
-    .section-heading h2 {
-      font-size: clamp(34px, 5vw, 52px);
-      line-height: 1.05;
-      letter-spacing: -1px;
-      margin: 10px 0 16px;
-    }
-
-    .section-heading p {
-      color: #475569;
-      font-size: 18px;
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1.05rem;
     }
 
     .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
+      gap: 18px;
     }
 
     .card {
-      background: white;
-      color: #020617;
-      border: 1px solid #e2e8f0;
-      border-radius: 28px;
-      padding: 34px;
-      box-shadow: 0 8px 28px rgba(15, 23, 42, 0.06);
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.74);
+      box-shadow: 0 18px 50px rgba(7,63,59,0.06);
     }
 
-    .card-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 18px;
-      background: #cffafe;
-      color: #0e7490;
+    .icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
       display: grid;
       place-items: center;
-      font-size: 26px;
-      margin-bottom: 22px;
+      color: white;
+      background: linear-gradient(135deg, var(--helix-green), var(--aqua));
+      margin-bottom: 20px;
+      font-size: 1.35rem;
     }
 
     .card h3 {
-      font-size: 24px;
-      margin-bottom: 12px;
+      margin: 0 0 10px;
+      font-size: 1.25rem;
+      color: var(--deep-teal);
     }
 
     .card p {
-      color: #475569;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
     }
 
-    .market-grid {
+    .split {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 34px;
+      align-items: start;
     }
 
-    .market-card {
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 32px;
-      padding: 40px;
-    }
-
-    .market-card h3 {
-      font-size: 32px;
-      margin: 16px 0 20px;
-    }
-
-    .market-card ul {
-      list-style: none;
-      display: grid;
-      gap: 14px;
-      color: #dbeafe;
-    }
-
-    .market-card li::before {
-      content: "✓";
-      color: #22d3ee;
-      font-weight: 900;
-      margin-right: 10px;
-    }
-
-    .process {
-      background: #0f172a;
+    .panel {
+      border-radius: 34px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.82);
+      box-shadow: var(--shadow);
+      padding: 34px;
     }
 
     .steps {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      gap: 16px;
     }
 
     .step {
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(255, 255, 255, 0.04);
-      border-radius: 28px;
-      padding: 28px;
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+      padding: 18px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(217,243,255,0.8), rgba(255,255,255,0.8));
+      border: 1px solid var(--line);
     }
 
-    .step-number {
-      color: #22d3ee;
-      font-weight: 900;
-    }
-
-    .step h3 {
-      font-size: 24px;
-      margin: 12px 0 8px;
-    }
-
-    .step p {
-      color: #94a3b8;
-    }
-
-    .booking-grid {
+    .num {
+      flex: 0 0 34px;
+      height: 34px;
+      border-radius: 50%;
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 50px;
-      align-items: start;
+      place-items: center;
+      color: white;
+      font-weight: 800;
+      background: var(--helix-green);
     }
 
-    .contact-list {
-      margin-top: 24px;
-      display: grid;
-      gap: 14px;
-      color: #475569;
-    }
+    .step strong { color: var(--deep-teal); }
+    .step p { margin: 5px 0 0; color: var(--muted); line-height: 1.55; }
 
     form {
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 32px;
-      padding: 32px;
-      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.12);
+      display: grid;
+      gap: 16px;
     }
 
     .form-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .form-group {
-      margin-bottom: 18px;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
     }
 
     label {
-      display: block;
+      display: grid;
+      gap: 8px;
+      color: var(--deep-teal);
       font-weight: 700;
-      font-size: 14px;
-      margin-bottom: 8px;
-      color: #1e293b;
+      font-size: 0.92rem;
     }
 
     input,
     select,
     textarea {
       width: 100%;
-      border: 1px solid #e2e8f0;
-      background: #f8fafc;
+      border: 1px solid rgba(11,91,85,0.18);
       border-radius: 16px;
-      padding: 14px;
-      font-size: 15px;
+      padding: 14px 15px;
+      font: inherit;
+      color: var(--ink);
+      background: rgba(255,255,255,0.9);
       outline: none;
     }
+
+    textarea { min-height: 116px; resize: vertical; }
 
     input:focus,
     select:focus,
     textarea:focus {
-      border-color: #06b6d4;
-      box-shadow: 0 0 0 4px #cffafe;
+      border-color: var(--aqua);
+      box-shadow: 0 0 0 4px rgba(56, 214, 232, 0.16);
     }
 
-    textarea {
-      min-height: 130px;
-      resize: vertical;
+    .notice {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(56, 214, 232, 0.10);
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 0.92rem;
     }
 
-    .form-note {
-      margin-top: 14px;
-      color: #64748b;
-      font-size: 13px;
+    .portfolio {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
     }
+
+    .feature-box {
+      min-height: 310px;
+      border-radius: 30px;
+      padding: 28px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      background:
+        linear-gradient(180deg, transparent, rgba(7, 63, 59, 0.82)),
+        radial-gradient(circle at 68% 30%, #39e2ff, transparent 27%),
+        linear-gradient(135deg, #115f9f, #30d7d2 46%, #0b5b55);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .feature-box::before {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border: 2px solid rgba(255,255,255,0.28);
+      border-radius: 50%;
+      top: -90px;
+      right: -80px;
+    }
+
+    .feature-box h3,
+    .feature-box p { position: relative; margin-left: 0; }
+    .feature-box h3 { margin-bottom: 8px; font-size: 1.8rem; }
+    .feature-box p { margin-bottom: 0; opacity: 0.88; line-height: 1.6; }
 
     footer {
-      padding: 34px 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      color: #94a3b8;
+      padding: 44px 0;
+      background: var(--deep-teal);
+      color: rgba(255,255,255,0.72);
     }
 
-    .footer-row {
+    .footer-grid {
       display: flex;
       justify-content: space-between;
-      gap: 20px;
+      gap: 24px;
+      align-items: center;
       flex-wrap: wrap;
     }
 
-    .footer-links {
-      display: flex;
-      gap: 22px;
+    .footer-grid strong {
+      color: white;
+      letter-spacing: 0.14em;
     }
 
-    .privacy-page {
-      display: none;
-      min-height: 100vh;
-      background: white;
-      color: #020617;
-      padding: 60px 0;
-    }
-
-    .privacy-page h1 {
-      font-size: 48px;
-      margin: 22px 0 10px;
-    }
-
-    .privacy-page section {
-      padding: 24px 0 0;
-    }
-
-    .privacy-page h2 {
-      font-size: 24px;
-      margin-bottom: 8px;
-    }
-
-    .privacy-page p {
-      color: #475569;
-    }
-
-    .legal-note {
-      margin-top: 28px;
-      background: #f1f5f9;
-      padding: 18px;
-      border-radius: 18px;
-      color: #475569;
-      font-size: 14px;
-    }
-
-    @media (max-width: 850px) {
-      .nav-links {
-        display: none;
-      }
-
+    @media (max-width: 900px) {
+      nav { display: none; }
       .hero-grid,
-      .cards,
-      .market-grid,
-      .steps,
-      .booking-grid,
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
+      .split,
+      .portfolio { grid-template-columns: 1fr; }
+      .visual-card { min-height: 480px; }
+      .cards { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+    }
 
-      .hero {
-        padding: 80px 0;
-      }
+    @media (max-width: 560px) {
+      .container { width: min(100% - 26px, 1160px); }
+      .hero { padding-top: 54px; }
+      .hero-actions { flex-direction: column; }
+      .btn { width: 100%; }
+      .screen { left: 20px; right: 20px; }
+      .screen-base { left: 38px; right: 38px; }
+      .stand.left { left: 60px; }
+      .stand.right { right: 60px; }
+      .floating-note { left: 22px; right: 22px; width: auto; }
     }
   </style>
 </head>
 <body>
-  <div id="mainPage">
+  <div class="page">
     <header>
-      <div class="container">
+      <div class="container nav">
+        <a class="brand" href="#top" aria-label="Helix home">
+          <img src="/mnt/data/HelixLogo.png" alt="Helix logo" />
+          <span>HELIX</span>
+        </a>
         <nav>
-          <a href="#home" class="logo">
-            <span class="logo-mark">H</span>
-            <span>Helix</span>
-          </a>
-          <div class="nav-links">
-            <a href="#services">Services</a>
-            <a href="#markets">Who We Serve</a>
-            <a href="#process">Process</a>
-            <a href="#booking">Book</a>
-            <a href="#booking" class="btn btn-primary">Get a Quote</a>
-          </div>
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#appointment">Appointments</a>
+          <a href="#contact">Contact</a>
         </nav>
+        <a class="btn btn-primary" href="#appointment">Book Now</a>
       </div>
     </header>
 
-    <main id="home">
+    <main id="top">
       <section class="hero">
         <div class="container hero-grid">
           <div>
-            <span class="eyebrow">Professional LED screen sales & installation</span>
-            <h1>Bright, reliable LED displays for businesses and churches.</h1>
-            <p>Helix helps organizations upgrade their space with high-impact LED screens built for announcements, worship, branding, events, menus, promotions, and live presentations.</p>
-            <div class="hero-buttons">
-              <a href="#booking" class="btn btn-primary">Book a Free Consultation</a>
-              <a href="#services" class="btn btn-secondary">Explore Services</a>
+            <div class="eyebrow"><span class="dot"></span> LED screen sales, installation & maintenance</div>
+            <h1>Make your space impossible to ignore.</h1>
+            <p>
+              Helix helps businesses, churches, events, and storefronts design, install, and maintain premium LED display systems that look modern, clean, and reliable.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#appointment">Schedule a Consultation</a>
+              <a class="btn btn-secondary" href="#services">View Services</a>
+            </div>
+            <div class="stats">
+              <div class="stat"><strong>Sales</strong><span>LED display recommendations</span></div>
+              <div class="stat"><strong>Install</strong><span>Clean setup for your space</span></div>
+              <div class="stat"><strong>Care</strong><span>Maintenance & support</span></div>
             </div>
           </div>
 
-          <div class="screen-card">
-            <div class="led-screen">
-              <div class="pixels">
-                <script>
-                  for (let i = 0; i < 120; i++) {
-                    document.write('<div class="pixel"></div>');
-                  }
-                </script>
-              </div>
-              <div class="screen-text">
-                <small>Helix Display System</small>
-                <h2>Make every message impossible to miss.</h2>
-              </div>
+          <div class="visual-card" aria-label="LED display visual mockup">
+            <div class="screen"></div>
+            <div class="screen-base"></div>
+            <div class="stand left"></div>
+            <div class="stand right"></div>
+            <div class="floating-note">
+              <strong>Transparent, vivid, modern</strong>
+              <span>Inspired by holographic display visuals with bright aqua, sky-blue, white, and deep Helix green accents.</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="services" class="white-section">
+      <section id="services">
         <div class="container">
-          <div class="section-heading">
-            <span class="tag">What we do</span>
-            <h2>LED screens without the headache.</h2>
-            <p>From choosing the right screen to professional installation, Helix gives you a smooth path from idea to finished display.</p>
+          <div class="section-head">
+            <h2>Everything you need for your LED display project.</h2>
+            <p>From choosing the right screen to installation and long-term care, Helix keeps the process simple and professional.</p>
           </div>
-
           <div class="cards">
-            <div class="card">
-              <div class="card-icon">▦</div>
+            <article class="card">
+              <div class="icon">◈</div>
               <h3>LED Screen Sales</h3>
-              <p>Indoor and outdoor LED display solutions for lobbies, sanctuaries, storefronts, gyms, stages, and event spaces.</p>
-            </div>
-            <div class="card">
-              <div class="card-icon">⚙</div>
-              <h3>Installation & Setup</h3>
-              <p>We help plan placement, mounting, cabling, configuration, and launch so your display looks professional from day one.</p>
-            </div>
-            <div class="card">
-              <div class="card-icon">✓</div>
-              <h3>Training & Support</h3>
-              <p>Simple handoff, basic training, and support options so your team knows how to confidently use the screen.</p>
-            </div>
+              <p>Get help selecting the right LED screen size, brightness, mounting style, and visual setup for your location and budget.</p>
+            </article>
+            <article class="card">
+              <div class="icon">▣</div>
+              <h3>Professional Installation</h3>
+              <p>We plan clean mounting, cable management, power needs, display positioning, and setup so your screen looks seamless.</p>
+            </article>
+            <article class="card">
+              <div class="icon">✦</div>
+              <h3>Maintenance & Support</h3>
+              <p>Keep your screen running smoothly with troubleshooting, routine checks, content setup support, and repairs when needed.</p>
+            </article>
           </div>
         </div>
       </section>
 
-      <section id="markets">
-        <div class="container market-grid">
-          <div class="market-card">
-            <div class="card-icon">🏢</div>
-            <h3>For Business Owners</h3>
-            <ul>
-              <li>Show promotions, menus, announcements, and brand visuals</li>
-              <li>Create a modern customer experience</li>
-              <li>Stand out from competitors with high-impact displays</li>
-              <li>Ideal for retail, restaurants, offices, gyms, and event venues</li>
-            </ul>
-          </div>
-          <div class="market-card">
-            <div class="card-icon">⛪</div>
-            <h3>For Churches</h3>
-            <ul>
-              <li>Display lyrics, sermons, announcements, and live video</li>
-              <li>Improve visibility for the whole congregation</li>
-              <li>Create a clean, modern worship environment</li>
-              <li>Great for sanctuaries, fellowship halls, youth rooms, and stages</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="process" class="process">
-        <div class="container">
-          <div class="section-heading" style="text-align:center; margin-left:auto; margin-right:auto;">
-            <span class="tag">Our process</span>
-            <h2>Simple, clear, and professional.</h2>
+      <section id="process">
+        <div class="container split">
+          <div class="section-head">
+            <h2>A clear process from idea to installation.</h2>
+            <p>Book an appointment and we’ll help you figure out what screen makes sense for your space, audience, and goals.</p>
           </div>
           <div class="steps">
-            <div class="step"><span class="step-number">01</span><h3>Consult</h3><p>Tell us about your space, goals, timeline, and budget.</p></div>
-            <div class="step"><span class="step-number">02</span><h3>Recommend</h3><p>We suggest the right screen size, placement, and setup.</p></div>
-            <div class="step"><span class="step-number">03</span><h3>Install</h3><p>Our team handles the technical setup and clean installation.</p></div>
-            <div class="step"><span class="step-number">04</span><h3>Launch</h3><p>We test the display, train your team, and make sure you are ready.</p></div>
+            <div class="step"><div class="num">1</div><div><strong>Consultation</strong><p>Tell us about your business, church, event, or space. We discuss your goals and display needs.</p></div></div>
+            <div class="step"><div class="num">2</div><div><strong>Site & Product Recommendation</strong><p>We recommend the right screen type, size, installation method, and estimated project scope.</p></div></div>
+            <div class="step"><div class="num">3</div><div><strong>Installation & Setup</strong><p>Helix handles installation, testing, and basic training so your team knows how to use the display.</p></div></div>
+            <div class="step"><div class="num">4</div><div><strong>Ongoing Maintenance</strong><p>After launch, we can support repairs, updates, maintenance visits, and troubleshooting.</p></div></div>
           </div>
         </div>
       </section>
 
-      <section id="booking" class="white-section">
-        <div class="container booking-grid">
-          <div>
-            <div class="section-heading">
-              <span class="tag">Book an appointment</span>
-              <h2>Schedule a free LED screen consultation.</h2>
-              <p>Tell us what kind of screen you need, and we will help you choose the right solution for your space.</p>
-            </div>
-            <div class="contact-list">
-              <p>📞 Phone: (555) 123-4567</p>
-              <p>✉️ Email: hello@helixscreens.com</p>
-              <p>📍 Serving businesses, churches, and organizations locally</p>
-            </div>
+      <section>
+        <div class="container portfolio">
+          <div class="feature-box">
+            <h3>Designed for storefronts, churches, events, and businesses.</h3>
+            <p>Use LED screens for announcements, worship visuals, promotions, menus, lobby displays, product launches, and immersive experiences.</p>
+          </div>
+          <div class="card">
+            <div class="icon">◎</div>
+            <h3>Why Helix?</h3>
+            <p>We combine display technology with clean design thinking, helping each screen feel like it belongs in the space instead of looking like an afterthought.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="appointment">
+        <div class="container split">
+          <div class="section-head">
+            <div class="eyebrow"><span class="dot"></span> Book an appointment</div>
+            <h2>Schedule your LED screen consultation.</h2>
+            <p>Fill out the form and Helix will follow up to confirm your appointment time, project needs, and next steps.</p>
           </div>
 
-          <form onsubmit="event.preventDefault(); alert('Thank you! Your appointment request has been received.');">
-            <div class="form-grid">
-              <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your name" required></div>
-              <div class="form-group"><label>Organization</label><input type="text" placeholder="Organization name"></div>
-            </div>
-            <div class="form-grid">
-              <div class="form-group"><label>Email</label><input type="email" placeholder="you@example.com" required></div>
-              <div class="form-group"><label>Phone</label><input type="tel" placeholder="(555) 123-4567"></div>
-            </div>
-            <div class="form-grid">
-              <div class="form-group">
-                <label>Organization Type</label>
-                <select>
-                  <option>Business</option>
-                  <option>Church</option>
-                  <option>School</option>
-                  <option>Event Venue</option>
-                  <option>Other</option>
-                </select>
+          <div class="panel">
+            <form action="mailto:hello@helixleddesign.com" method="post" enctype="text/plain">
+              <div class="form-grid">
+                <label>Full Name
+                  <input type="text" name="Full Name" placeholder="Your name" required />
+                </label>
+                <label>Email
+                  <input type="email" name="Email" placeholder="you@example.com" required />
+                </label>
               </div>
-              <div class="form-group">
-                <label>Interested In</label>
-                <select>
-                  <option>Indoor LED Screen</option>
-                  <option>Outdoor LED Screen</option>
-                  <option>LED Video Wall</option>
-                  <option>Installation Only</option>
-                  <option>Not Sure Yet</option>
-                </select>
+              <div class="form-grid">
+                <label>Phone Number
+                  <input type="tel" name="Phone" placeholder="(555) 000-0000" />
+                </label>
+                <label>Business / Organization
+                  <input type="text" name="Organization" placeholder="Company, church, or venue" />
+                </label>
               </div>
-            </div>
-            <div class="form-grid">
-              <div class="form-group"><label>Preferred Date</label><input type="date"></div>
-              <div class="form-group"><label>Preferred Time</label><input type="time"></div>
-            </div>
-            <div class="form-group">
-              <label>Project Details</label>
-              <textarea placeholder="Tell us about your space, screen size, location, timeline, or goals."></textarea>
-            </div>
-            <button class="btn btn-primary" type="submit">Request Appointment</button>
-            <p class="form-note">This form currently shows a confirmation message. To receive real submissions, connect it to Formspree, Google Forms, HubSpot, Calendly, or another booking tool.</p>
-          </form>
+              <div class="form-grid">
+                <label>Appointment Date
+                  <input type="date" name="Preferred Date" required />
+                </label>
+                <label>Preferred Time
+                  <input type="time" name="Preferred Time" required />
+                </label>
+              </div>
+              <div class="form-grid">
+                <label>Service Needed
+                  <select name="Service Needed" required>
+                    <option value="">Select a service</option>
+                    <option>LED screen sales consultation</option>
+                    <option>Installation quote</option>
+                    <option>Maintenance or repair</option>
+                    <option>Church display project</option>
+                    <option>Business storefront display</option>
+                    <option>Other</option>
+                  </select>
+                </label>
+                <label>Project Location
+                  <input type="text" name="Project Location" placeholder="City / address / venue" />
+                </label>
+              </div>
+              <label>Project Details
+                <textarea name="Project Details" placeholder="Tell us about your space, screen size ideas, timeline, and goals."></textarea>
+              </label>
+              <div class="notice">
+                This demo form opens your email app. For a live website, connect this form to Calendly, Google Calendar, Tally, Formspree, or a backend booking system.
+              </div>
+              <button class="btn btn-primary" type="submit">Request Appointment</button>
+            </form>
+          </div>
         </div>
       </section>
     </main>
 
-    <footer>
-      <div class="container footer-row">
-        <p>© 2026 Helix. All rights reserved.</p>
-        <div class="footer-links">
-          <a href="#booking">Book Appointment</a>
-          <a href="#" onclick="showPrivacyPage(); return false;">Privacy Policy</a>
+    <footer id="contact">
+      <div class="container footer-grid">
+        <div>
+          <strong>HELIX LED & DESIGN</strong>
+          <p>LED screen sales, installation, and maintenance.</p>
+        </div>
+        <div>
+          <p>Email: hello@helixleddesign.com</p>
+          <p>Phone: (555) 000-0000</p>
         </div>
       </div>
     </footer>
   </div>
-
-  <div id="privacyPage" class="privacy-page">
-    <div class="container">
-      <button class="btn btn-primary" onclick="showMainPage()">Back to Home</button>
-      <h1>Privacy Policy</h1>
-      <p>Last updated: April 29, 2026</p>
-
-      <section>
-        <h2>1. Information We Collect</h2>
-        <p>Helix may collect information you provide through our appointment form, including your name, organization name, email address, phone number, organization type, preferred appointment time, and project details.</p>
-      </section>
-
-      <section>
-        <h2>2. How We Use Your Information</h2>
-        <p>We use submitted information to respond to inquiries, schedule consultations, prepare quotes, provide customer support, and improve our services.</p>
-      </section>
-
-      <section>
-        <h2>3. Sharing of Information</h2>
-        <p>We do not sell your personal information. We may share information with trusted service providers only when needed to operate our website, manage appointments, process communications, or provide requested services.</p>
-      </section>
-
-      <section>
-        <h2>4. Data Security</h2>
-        <p>We take reasonable steps to protect your information. However, no website or online transmission is completely secure, and we cannot guarantee absolute security.</p>
-      </section>
-
-      <section>
-        <h2>5. Cookies and Analytics</h2>
-        <p>Our website may use cookies or analytics tools to understand site performance and visitor behavior. You can disable cookies through your browser settings.</p>
-      </section>
-
-      <section>
-        <h2>6. Your Choices</h2>
-        <p>You may contact us to request access, correction, or deletion of your personal information, subject to legal and business requirements.</p>
-      </section>
-
-      <section>
-        <h2>7. Contact Us</h2>
-        <p>For questions about this Privacy Policy, contact Helix at hello@helixscreens.com.</p>
-      </section>
-
-      <p class="legal-note">Note: This is a general privacy policy template and should be reviewed by a legal professional before publishing.</p>
-    </div>
-  </div>
-
-  <script>
-    function showPrivacyPage() {
-      document.getElementById('mainPage').style.display = 'none';
-      document.getElementById('privacyPage').style.display = 'block';
-      window.scrollTo(0, 0);
-    }
-
-    function showMainPage() {
-      document.getElementById('privacyPage').style.display = 'none';
-      document.getElementById('mainPage').style.display = 'block';
-      window.scrollTo(0, 0);
-    }
-  </script>
 </body>
 </html>
